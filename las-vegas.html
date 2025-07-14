@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vegas Opulence | The Ultimate Luxury Experience</title>
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Playfair Display', serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        @font-face {
+            font-family: 'Playfair Display';
+            src: url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&display=swap');
+        }
+        
+        /* Header Styles */
+        header {
+            position: relative;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .video-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+        
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 6rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #ffd700, #ff8c00, #ff1493, #9400d3);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            letter-spacing: 5px;
+        }
+        
+        .tagline {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+        
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(45deg, #ff8c00, #ff1493);
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255, 20, 147, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.7);
+        }
+        
+        /* Navigation */
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            z-index: 2;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(to right, #ffd700, #ff1493);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        /* Luxury Section */
+        .luxury-section {
+            padding: 100px 0;
+            background: url('https://images.unsplash.com/photo-1519817650390-64a93db51149') no-repeat center center/cover;
+            position: relative;
+        }
+        
+        .luxury-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3.5rem;
+            margin-bottom: 50px;
+            position: relative;
+            z-index: 1;
+            color: #ffd700;
+        }
+        
+        .luxury-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            padding: 0 50px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .luxury-item {
+            background: rgba(20, 20, 20, 0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.5s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .luxury-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(255, 215, 0, 0.2);
+        }
+        
+        .luxury-img {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .luxury-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .luxury-item:hover .luxury-img img {
+            transform: scale(1.1);
+        }
+        
+        .luxury-content {
+            padding: 20px;
+        }
+        
+        .luxury-title {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #ffd700;
+        }
+        
+        .luxury-desc {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        /* VIP Section */
+        .vip-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vip-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,215,0,0.1) 0%, rgba(0,0,0,0) 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .vip-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .vip-card {
+            background: rgba(10, 10, 10, 0.7);
+            border-radius: 15px;
+            padding: 50px;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.2);
+            text-align: center;
+        }
+        
+        .vip-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .vip-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #fff;
+            font-style: italic;
+        }
+        
+        .vip-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .vip-feature {
+            padding: 20px;
+            background: rgba(255, 215, 0, 0.1);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .vip-feature:hover {
+            background: rgba(255, 215, 0, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        .vip-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+        
+        .vip-feature-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .vip-feature-desc {
+            font-size: 0.9rem;
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background: url('https://images.unsplash.com/photo-1519817650390-64a93db51149') no-repeat center center/cover;
+            position: relative;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .contact-form {
+            background: rgba(20, 20, 20, 0.8);
+            padding: 50px;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+            color: #ffd700;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            border-radius: 5px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #ffd700;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(45deg, #ff8c00, #ff1493);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: inline-block;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 20, 147, 0.5);
+        }
+        
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 50px 0 20px;
+            position: relative;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: #ffd700;
+        }
+        
+
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 215, 0, 0.2);
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 4rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            .vip-title {
+                font-size: 2rem;
+            }
+            
+            .vip-subtitle {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo-small">VEGAS</div>
+            <ul class="nav-links">
+                <li><a href="#luxury">Luxury</a></li>
+                <li><a href="#vip">VIP</a></li>
+                <li><a href="#casinos">Casinos</a></li>
+                <li><a href="#entertainment">Entertainment</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <div class="video-background">
+            <video autoplay muted loop>
+                <source src="https://assets.mixkit.co/videos/preview/mixkit-city-traffic-at-night-1088-large.mp4" type="video/mp4">
+            </video>
+        </div>
+        
+        <div class="overlay"></div>
+        
+        <div class="header-content">
+            <h1 class="logo">VEGAS OPULENCE</h1>
+            <p class="tagline">Where Dreams Become Reality</p>
+            <a href="#contact" class="cta-button">Book Your Experience</a>
+        </div>
+    </header>
+    
+    <section id="luxury" class="luxury-section">
+        <h2 class="section-title">Unparalleled Luxury</h2>
+        <div class="luxury-grid">
+            <div class="luxury-item">
+                <div class="luxury-img">
+                    <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945" alt="Luxury Suite">
+                </div>
+                <div class="luxury-content">
+                    <h3 class="luxury-title">Penthouse Suites</h3>
+                    <p class="luxury-desc">Experience the pinnacle of luxury in our breathtaking penthouses with panoramic views of the Vegas skyline.</p>
+                    <a href="#penthouses.html" class="cta-button">View Options</a>
+                </div>
+            </div>
+            
+            <div class="luxury-item">
+                <div class="luxury-img">
+                    <img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b" alt="Fine Dining">
+                </div>
+                <div class="luxury-content">
+                    <h3 class="luxury-title">Michelin Star Dining</h3>
+                    <p class="luxury-desc">Indulge in world-class cuisine crafted by award-winning chefs in our exclusive restaurants.</p>
+                    <a href="#reservetable.html" class="cta-button">Reserve Table</a>
+                </div>
+            </div>
+            
+            <div class="luxury-item">
+                <div class="luxury-img">
+                    <img src="https://images.unsplash.com/photo-1564501049412-61c2a3083791" alt="Spa">
+                </div>
+                <div class="luxury-content">
+                    <h3 class="luxury-title">Opulent Spa</h3>
+                    <p class="luxury-desc">Rejuvenate your senses with our gold-infused treatments and diamond-dust facials.</p>
+                    <a href="#book.html" class="cta-button">Book Treatment</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="vip" class="vip-section">
+        <div class="vip-container">
+            <div class="vip-card">
+                <h2 class="vip-title">VIP Experience</h2>
+                <p class="vip-subtitle">Exclusive Privileges for Discerning Guests</p>
+                
+                <div class="vip-features">
+                    <div class="vip-feature">
+                        <div class="vip-icon"><i class="fas fa-gem"></i></div>
+                        <h3 class="vip-feature-title">Personal Concierge</h3>
+                        <p class="vip-feature-desc">Your dedicated concierge will fulfill every request, from sold-out show tickets to private jet charters.</p>
+                    </div>
+                    
+                    <div class="vip-feature">
+                        <div class="vip-icon"><i class="fas fa-car"></i></div>
+                        <h3 class="vip-feature-title">Luxury Transport</h3>
+                        <p class="vip-feature-desc">Arrive in style with our fleet of Rolls-Royce, Bentley, and Lamborghini vehicles at your disposal.</p>
+                    </div>
+                    
+                    <div class="vip-feature">
+                        <div class="vip-icon"><i class="fas fa-key"></i></div>
+                        <h3 class="vip-feature-title">Private Gaming</h3>
+                        <p class="vip-feature-desc">Access our exclusive high-limit salons with minimum bets starting at $10,000.</p>
+                    </div>
+                    
+                    <div class="vip-feature">
+                        <div class="vip-icon"><i class="fas fa-star"></i></div>
+                        <h3 class="vip-feature-title">Celebrity Access</h3>
+                        <p class="vip-feature-desc">Meet A-list celebrities and attend invite-only parties at the most exclusive venues.</p>
+                    </div>
+                </div>
+                
+                <a href="#contact" class="cta-button">Apply for VIP Status</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-container">
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone</label>
+                    <input type="tel" id="phone">
+                </div>
+                
+                <div class="form-group">
+                    <label for="interest">Interest</label>
+                    <select id="interest">
+                        <option value="accommodation">Luxury Accommodation</option>
+                        <option value="vip">VIP Services</option>
+                        <option value="dining">Fine Dining</option>
+                        <option value="entertainment">Entertainment</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" rows="5"></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Submit Request</button>
+            </form>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Vegas Opulence</h3>
+                <p>Redefining luxury in the heart of Las Vegas. Experience the extraordinary.</p>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Explore</h3>
+                <ul class="footer-links">
+                    <li><a href="#luxury">Luxury Suites</a></li>
+                    <li><a href="#vip">VIP Services</a></li>
+                    <li><a href="#">Fine Dining</a></li>
+                    <li><a href="#">Nightlife</a></li>
+                    <li><a href="#">Spa & Wellness</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Information</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Cookie Policy</a></li>
+                    <li><a href="#">Accessibility</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>&copy; 2023 Vegas Opulence. All rights reserved. The epitome of luxury in Las Vegas.</p>
+        </div>
+    </footer>
+</body>
+</html>
